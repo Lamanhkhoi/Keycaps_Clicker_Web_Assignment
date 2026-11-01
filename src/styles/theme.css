@@ -1,0 +1,19 @@
+/* Màu/font gom về MỘT file. Bảng màu lấy cảm hứng Steam (xanh đêm + xanh dương nhạt).
+   Chốt phong cách sau cũng chỉ cần sửa biến ở :root, không đụng component. */
+:root {
+  --bg-main: #1b2838;
+  --bg-dark: #171a21;
+  --bg-card: #16202d;
+  --text-main: #c7d5e0;
+  --text-muted: #8f98a0;
+  --accent: #66c0f4;
+  --price-bg: #4c6b22;      /* nền ô giá khi giảm */
+  --price-sale: #beee11;    /* chữ % giảm giá */
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* TODO (UI): style cho .game-card, .price-tag, .discount-badge, footer... */

@@ -1,0 +1,692 @@
+[
+  {
+    "name": "Counter-Strike 2",
+    "genre": "Action",
+    "tags": [
+      "Action"
+    ],
+    "price": 0,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg",
+    "description": "Game bắn súng đối kháng 5v5 kinh điển của Valve. Miễn phí, cạnh tranh cao, phù hợp chơi theo đội.",
+    "developer": "Valve",
+    "releaseDate": "2012-08-21",
+    "recommendations": 5334959,
+    "featured": false,
+    "steamAppId": 730
+  },
+  {
+    "name": "Elden Ring",
+    "genre": "RPG",
+    "tags": [
+      "Action",
+      "RPG"
+    ],
+    "price": 59.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg",
+    "description": "Nhập vai thế giới mở của FromSoftware và George R. R. Martin. Khám phá Lands Between, đánh boss khó và build nhân vật tự do.",
+    "developer": "FromSoftware, Inc.",
+    "releaseDate": "2022-02-24",
+    "recommendations": 835182,
+    "featured": true,
+    "steamAppId": 1245620
+  },
+  {
+    "name": "Cyberpunk 2077",
+    "genre": "RPG",
+    "tags": [
+      "RPG"
+    ],
+    "price": 59.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg",
+    "description": "Nhập vai thế giới mở trong thành phố tương lai Night City. Cốt truyện đậm chất cyberpunk với nhiều lựa chọn ảnh hưởng kết thúc.",
+    "developer": "CD PROJEKT RED",
+    "releaseDate": "2020-12-09",
+    "recommendations": 907487,
+    "featured": false,
+    "steamAppId": 1091500
+  },
+  {
+    "name": "Baldur's Gate 3",
+    "genre": "RPG",
+    "tags": [
+      "Adventure",
+      "RPG",
+      "Strategy"
+    ],
+    "price": 59.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg",
+    "description": "Nhập vai theo lượt dựa trên luật D&D của Larian. Cốt truyện phân nhánh, đồng đội có cá tính, chơi đơn hoặc co-op 4 người.",
+    "developer": "Larian Studios",
+    "releaseDate": "2023-08-03",
+    "recommendations": 760365,
+    "featured": true,
+    "steamAppId": 1086940
+  },
+  {
+    "name": "Stardew Valley",
+    "genre": "Simulation",
+    "tags": [
+      "Indie",
+      "RPG",
+      "Simulation"
+    ],
+    "price": 14.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/413150/header.jpg",
+    "description": "Nhận lại trang trại của ông nội: trồng trọt, nuôi thú, câu cá và kết bạn với dân làng. Nhẹ nhàng và rất dễ nghiện.",
+    "developer": "ConcernedApe",
+    "releaseDate": "2016-02-26",
+    "recommendations": 902907,
+    "featured": true,
+    "steamAppId": 413150
+  },
+  {
+    "name": "Hades",
+    "genre": "Action",
+    "tags": [
+      "Action",
+      "Indie",
+      "RPG"
+    ],
+    "price": 24.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/1145360/header.jpg",
+    "description": "Roguelike hành động góc nhìn từ trên xuống: vượt ngục thần Hades, mỗi lần chết là một lần mạnh hơn. Đồ họa và âm nhạc rất cuốn.",
+    "developer": "Supergiant Games",
+    "releaseDate": "2020-09-17",
+    "recommendations": 287675,
+    "featured": true,
+    "steamAppId": 1145360
+  },
+  {
+    "name": "Hollow Knight",
+    "genre": "Adventure",
+    "tags": [
+      "Action",
+      "Adventure",
+      "Indie"
+    ],
+    "price": 14.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/367520/header.jpg",
+    "description": "Metroidvania vẽ tay u tối: khám phá vương quốc côn trùng Hallownest, đánh boss và tìm đường qua mê cung rộng lớn.",
+    "developer": "Team Cherry",
+    "releaseDate": "2017-02-24",
+    "recommendations": 508020,
+    "featured": true,
+    "steamAppId": 367520
+  },
+  {
+    "name": "Terraria",
+    "genre": "Adventure",
+    "tags": [
+      "Action",
+      "Adventure",
+      "Indie",
+      "RPG"
+    ],
+    "price": 9.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/105600/header.jpg",
+    "description": "Sandbox 2D đào, xây, chế tạo và chiến đấu. Thế giới tự sinh, chơi một mình hoặc cùng bạn bè.",
+    "developer": "Re-Logic",
+    "releaseDate": "2011-05-16",
+    "recommendations": 1249220,
+    "featured": false,
+    "steamAppId": 105600
+  },
+  {
+    "name": "Portal 2",
+    "genre": "Adventure",
+    "tags": [
+      "Action",
+      "Adventure"
+    ],
+    "price": 9.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/620/header.jpg",
+    "description": "Giải đố góc nhìn thứ nhất với súng tạo cổng dịch chuyển. Co-op 2 người hài hước và cực kỳ sáng tạo.",
+    "developer": "Valve",
+    "releaseDate": "2011-04-18",
+    "recommendations": 392599,
+    "featured": false,
+    "steamAppId": 620
+  },
+  {
+    "name": "Half-Life 2",
+    "genre": "Action",
+    "tags": [
+      "Action"
+    ],
+    "price": 9.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/220/header.jpg",
+    "description": "Bắn súng góc nhìn thứ nhất đã thay đổi cả ngành game nhờ vật lý và cách kể chuyện. Một tượng đài của Valve.",
+    "developer": "Valve",
+    "releaseDate": "2004-11-16",
+    "recommendations": 204682,
+    "featured": false,
+    "steamAppId": 220
+  },
+  {
+    "name": "The Witcher 3: Wild Hunt",
+    "genre": "RPG",
+    "tags": [
+      "RPG"
+    ],
+    "price": 49.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg",
+    "description": "Vào vai Geralt, thợ săn quái vật, trong thế giới mở rộng lớn. Nhiệm vụ phụ được viết hay như nhiệm vụ chính.",
+    "developer": "CD PROJEKT RED",
+    "releaseDate": "2015-05-18",
+    "recommendations": 851574,
+    "featured": false,
+    "steamAppId": 292030
+  },
+  {
+    "name": "Red Dead Redemption 2",
+    "genre": "Adventure",
+    "tags": [
+      "Action",
+      "Adventure"
+    ],
+    "price": 59.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg",
+    "description": "Miền Tây hoang dã thế giới mở của Rockstar, theo chân băng Van der Linde. Chi tiết và cốt truyện ở mức đáng kinh ngạc.",
+    "developer": "Rockstar Games",
+    "releaseDate": "2019-12-05",
+    "recommendations": 859117,
+    "featured": false,
+    "steamAppId": 1174180
+  },
+  {
+    "name": "Sekiro: Shadows Die Twice",
+    "genre": "Action",
+    "tags": [
+      "Action",
+      "Adventure"
+    ],
+    "price": 59.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/814380/header.jpg",
+    "description": "Hành động ở Nhật thời Chiến Quốc, đề cao đỡ đòn và canh nhịp. Khó nhưng rất đã khi vượt qua.",
+    "developer": "FromSoftware, Inc.",
+    "releaseDate": "2019-03-21",
+    "recommendations": 261742,
+    "featured": false,
+    "steamAppId": 814380
+  },
+  {
+    "name": "Dark Souls III",
+    "genre": "Action",
+    "tags": [
+      "Action"
+    ],
+    "price": 59.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/374320/header.jpg",
+    "description": "Phần cuối của series Dark Souls: thế giới u ám, chiến đấu có trọng lượng và boss đáng nhớ.",
+    "developer": "FromSoftware, Inc.",
+    "releaseDate": "2016-04-11",
+    "recommendations": 279978,
+    "featured": false,
+    "steamAppId": 374320
+  },
+  {
+    "name": "Celeste",
+    "genre": "Adventure",
+    "tags": [
+      "Action",
+      "Adventure",
+      "Indie"
+    ],
+    "price": 19.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/504230/header.jpg",
+    "description": "Platformer chính xác về hành trình leo núi Celeste. Khó nhưng có chế độ hỗ trợ và cốt truyện nhiều cảm xúc.",
+    "developer": "Maddy Makes Games Inc.",
+    "releaseDate": "2018-01-25",
+    "recommendations": 134082,
+    "featured": false,
+    "steamAppId": 504230
+  },
+  {
+    "name": "Disco Elysium",
+    "genre": "RPG",
+    "tags": [
+      "RPG"
+    ],
+    "price": 39.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/632470/header.jpg",
+    "description": "RPG thiên về hội thoại: bạn là thám tử mất trí nhớ phá án trong thành phố suy tàn. Không có chiến đấu truyền thống.",
+    "developer": "ZA/UM",
+    "releaseDate": "2019-10-15",
+    "recommendations": 119210,
+    "featured": false,
+    "steamAppId": 632470
+  },
+  {
+    "name": "Undertale",
+    "genre": "RPG",
+    "tags": [
+      "Indie",
+      "RPG"
+    ],
+    "price": 9.99,
+    "discount": 75,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/391540/header.jpg",
+    "description": "RPG pixel nơi bạn không bắt buộc phải giết ai. Âm nhạc, hài hước và cốt truyện bất ngờ.",
+    "developer": "tobyfox",
+    "releaseDate": "2015-09-15",
+    "recommendations": 312757,
+    "featured": false,
+    "steamAppId": 391540
+  },
+  {
+    "name": "Vampire Survivors",
+    "genre": "Action",
+    "tags": [
+      "Action",
+      "Casual",
+      "Indie",
+      "RPG"
+    ],
+    "price": 4.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/1794680/header.jpg",
+    "description": "Sống sót trước hàng nghìn quái vật; nhân vật tự đánh, bạn lo né và chọn nâng cấp. Mỗi ván chỉ khoảng 30 phút.",
+    "developer": "poncle",
+    "releaseDate": "2022-10-20",
+    "recommendations": 252730,
+    "featured": false,
+    "steamAppId": 1794680
+  },
+  {
+    "name": "Balatro",
+    "genre": "Strategy",
+    "tags": [
+      "Casual",
+      "Indie",
+      "Strategy"
+    ],
+    "price": 14.99,
+    "discount": 20,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/2379780/header.jpg",
+    "description": "Roguelike xây bộ bài kiểu poker với các lá Joker đặc biệt. Dễ bắt đầu nhưng chiều sâu rất lớn.",
+    "developer": "LocalThunk",
+    "releaseDate": "2024-02-20",
+    "recommendations": 162571,
+    "featured": false,
+    "steamAppId": 2379780
+  },
+  {
+    "name": "Palworld",
+    "genre": "Adventure",
+    "tags": [
+      "Action",
+      "Adventure",
+      "Indie",
+      "RPG"
+    ],
+    "price": 29.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/1623730/header.jpg",
+    "description": "Thu thập, nuôi và chiến đấu cùng Pal trong thế giới mở sinh tồn. Có chế độ co-op nhiều người.",
+    "developer": "Pocketpair",
+    "releaseDate": "2026-07-09",
+    "recommendations": 417356,
+    "featured": false,
+    "steamAppId": 1623730
+  },
+  {
+    "name": "Helldivers 2",
+    "genre": "Action",
+    "tags": [
+      "Action"
+    ],
+    "price": 39.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/553850/header.jpg",
+    "description": "Bắn súng co-op góc nhìn thứ ba chống lại quân địch trong vũ trụ. Chơi đội 4 người.",
+    "developer": "Arrowhead Game Studios",
+    "releaseDate": "2024-02-08",
+    "recommendations": 850588,
+    "featured": false,
+    "steamAppId": 553850
+  },
+  {
+    "name": "Lethal Company",
+    "genre": "Action",
+    "tags": [
+      "Action",
+      "Adventure",
+      "Indie",
+      "Early Access"
+    ],
+    "price": 9.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/1966720/header.jpg",
+    "description": "Co-op kinh dị: cả nhóm vào các mặt trăng bỏ hoang nhặt phế liệu để đạt chỉ tiêu. Voice chat tạo ra rất nhiều tình huống hài hước.",
+    "developer": "Zeekerss",
+    "releaseDate": "2023-10-23",
+    "recommendations": 412132,
+    "featured": false,
+    "steamAppId": 1966720
+  },
+  {
+    "name": "Slay the Spire",
+    "genre": "Strategy",
+    "tags": [
+      "Indie",
+      "Strategy"
+    ],
+    "price": 24.99,
+    "discount": 75,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/646570/header.jpg",
+    "description": "Roguelike xây bộ bài: leo tháp, chọn lá bài và relic để tạo combo mạnh. Mỗi lần chơi là một kết quả khác.",
+    "developer": "Mega Crit",
+    "releaseDate": "2019-01-23",
+    "recommendations": 194726,
+    "featured": false,
+    "steamAppId": 646570
+  },
+  {
+    "name": "Cuphead",
+    "genre": "Action",
+    "tags": [
+      "Action",
+      "Indie"
+    ],
+    "price": 19.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/268910/header.jpg",
+    "description": "Run-and-gun phong cách hoạt hình thập niên 30. Chuyên về boss, đồ họa vẽ tay và độ khó cao.",
+    "developer": "Studio MDHR Entertainment Inc.",
+    "releaseDate": "2017-09-29",
+    "recommendations": 200834,
+    "featured": false,
+    "steamAppId": 268910
+  },
+  {
+    "name": "It Takes Two",
+    "genre": "Adventure",
+    "tags": [
+      "Action",
+      "Adventure"
+    ],
+    "price": 39.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/1426210/header.jpg",
+    "description": "Game co-op bắt buộc 2 người: hai nhân vật bị biến thành búp bê và phải phối hợp mới đi tiếp. Mỗi màn có cơ chế chơi mới.",
+    "developer": "Hazelight Studios",
+    "releaseDate": "2021-03-25",
+    "recommendations": 220813,
+    "featured": false,
+    "steamAppId": 1426210
+  },
+  {
+    "name": "Left 4 Dead 2",
+    "genre": "Action",
+    "tags": [
+      "Action"
+    ],
+    "price": 9.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/550/header.jpg",
+    "description": "Co-op sinh tồn zombie 4 người, với nhiều bản đồ và chế độ. Vẫn được cộng đồng chơi rất nhiều.",
+    "developer": "Valve",
+    "releaseDate": "2009-11-16",
+    "recommendations": 824574,
+    "featured": false,
+    "steamAppId": 550
+  },
+  {
+    "name": "Valheim",
+    "genre": "Adventure",
+    "tags": [
+      "Action",
+      "Adventure",
+      "Indie",
+      "RPG"
+    ],
+    "price": 29.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/892970/header.jpg",
+    "description": "Sinh tồn thần thoại Bắc Âu: xây nhà, đóng thuyền, đánh boss. Chơi tối đa 10 người.",
+    "developer": "Iron Gate AB",
+    "releaseDate": "2026-09-09",
+    "recommendations": 476237,
+    "featured": false,
+    "steamAppId": 892970
+  },
+  {
+    "name": "Subnautica",
+    "genre": "Adventure",
+    "tags": [
+      "Adventure",
+      "Indie"
+    ],
+    "price": 29.99,
+    "discount": 75,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/264710/header.jpg",
+    "description": "Sinh tồn dưới đại dương của một hành tinh xa lạ. Chế tạo tàu ngầm, khám phá và đối mặt với những điều đáng sợ ở vùng biển sâu.",
+    "developer": "Unknown Worlds Entertainment",
+    "releaseDate": "2018-01-23",
+    "recommendations": 343661,
+    "featured": false,
+    "steamAppId": 264710
+  },
+  {
+    "name": "Factorio",
+    "genre": "Simulation",
+    "tags": [
+      "Casual",
+      "Indie",
+      "Simulation",
+      "Strategy"
+    ],
+    "price": 35.0,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/427520/header.jpg",
+    "description": "Xây dựng và tự động hóa nhà máy trên hành tinh lạ. Tối ưu băng chuyền là niềm vui chính.",
+    "developer": "Wube Software LTD.",
+    "releaseDate": "2020-08-14",
+    "recommendations": 197140,
+    "featured": false,
+    "steamAppId": 427520
+  },
+  {
+    "name": "RimWorld",
+    "genre": "Simulation",
+    "tags": [
+      "Indie",
+      "Simulation",
+      "Strategy"
+    ],
+    "price": 34.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/294100/header.jpg",
+    "description": "Giả lập thuộc địa nơi một AI kể chuyện tạo ra các sự kiện. Mỗi câu chuyện của người định cư đều khác nhau.",
+    "developer": "Ludeon Studios",
+    "releaseDate": "2018-10-17",
+    "recommendations": 211089,
+    "featured": false,
+    "steamAppId": 294100
+  },
+  {
+    "name": "Civilization VI",
+    "genre": "Strategy",
+    "tags": [
+      "Strategy"
+    ],
+    "price": 59.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/289070/header.jpg",
+    "description": "Chiến thuật theo lượt: xây dựng đế chế từ thời đồ đá đến tương lai. Chỉ cần thêm một lượt nữa.",
+    "developer": "Firaxis Games",
+    "releaseDate": "2016-10-20",
+    "recommendations": 277409,
+    "featured": false,
+    "steamAppId": 289070
+  },
+  {
+    "name": "Resident Evil 4",
+    "genre": "Action",
+    "tags": [
+      "Action",
+      "Adventure"
+    ],
+    "price": 39.99,
+    "discount": 75,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/2050650/header.jpg",
+    "description": "Bản làm lại của Resident Evil 4: Leon đi cứu con gái tổng thống. Kinh dị hành động với nhịp độ rất tốt.",
+    "developer": "CAPCOM Co., Ltd.",
+    "releaseDate": "2023-03-23",
+    "recommendations": 193636,
+    "featured": false,
+    "steamAppId": 2050650
+  },
+  {
+    "name": "Monster Hunter: World",
+    "genre": "Action",
+    "tags": [
+      "Action"
+    ],
+    "price": 29.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/582010/header.jpg",
+    "description": "Săn quái vật khổng lồ cùng bạn bè. Chế tạo vũ khí và giáp từ phần thu được của chúng.",
+    "developer": "CAPCOM Co., Ltd.",
+    "releaseDate": "2018-08-08",
+    "recommendations": 323050,
+    "featured": false,
+    "steamAppId": 582010
+  },
+  {
+    "name": "Black Myth: Wukong",
+    "genre": "Action",
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG"
+    ],
+    "price": 59.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/2358720/header.jpg",
+    "description": "Hành động nhập vai lấy cảm hứng Tây Du Ký. Boss đồ sộ, đồ họa đẹp và chiến đấu nhanh.",
+    "developer": "Game Science",
+    "releaseDate": "2024-08-19",
+    "recommendations": 883369,
+    "featured": true,
+    "steamAppId": 2358720
+  },
+  {
+    "name": "Hogwarts Legacy",
+    "genre": "RPG",
+    "tags": [
+      "Action",
+      "Adventure",
+      "RPG"
+    ],
+    "price": 59.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/990080/header.jpg",
+    "description": "RPG thế giới mở trong thế giới phù thủy thế kỷ 19. Học phép, bay chổi và khám phá lâu đài Hogwarts.",
+    "developer": "Avalanche Software",
+    "releaseDate": "2023-02-10",
+    "recommendations": 278030,
+    "featured": false,
+    "steamAppId": 990080
+  },
+  {
+    "name": "Persona 5 Royal",
+    "genre": "RPG",
+    "tags": [
+      "RPG"
+    ],
+    "price": 59.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/1687950/header.jpg",
+    "description": "JRPG về nhóm học sinh trở thành Phantom Thieves: ban ngày đi học, ban đêm vào Palace. Phong cách và âm nhạc nổi bật.",
+    "developer": "ATLUS",
+    "releaseDate": "2022-10-20",
+    "recommendations": 93763,
+    "featured": false,
+    "steamAppId": 1687950
+  },
+  {
+    "name": "Doom Eternal",
+    "genre": "Action",
+    "tags": [
+      "Action"
+    ],
+    "price": 29.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/782330/header.jpg",
+    "description": "Bắn súng tốc độ cao: xé xác quân địa ngục với vũ khí đa dạng. Cần di chuyển liên tục và quản lý tài nguyên.",
+    "developer": "id Software",
+    "releaseDate": "2020-03-19",
+    "recommendations": 190500,
+    "featured": false,
+    "steamAppId": 782330
+  },
+  {
+    "name": "Among Us",
+    "genre": "Casual",
+    "tags": [
+      "Casual"
+    ],
+    "price": 4.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/945360/header.jpg",
+    "description": "Trò chơi suy luận xã hội: tìm ra kẻ giả mạo trong phi hành đoàn. Rất hợp chơi nhóm bạn bè.",
+    "developer": "Innersloth",
+    "releaseDate": "2018-11-16",
+    "recommendations": 662974,
+    "featured": false,
+    "steamAppId": 945360
+  },
+  {
+    "name": "Stray",
+    "genre": "Adventure",
+    "tags": [
+      "Adventure",
+      "Indie"
+    ],
+    "price": 29.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/1332010/header.jpg",
+    "description": "Vào vai chú mèo lạc trong thành phố robot tương lai. Khám phá, giải đố và rất thư giãn.",
+    "developer": "BlueTwelve Studio",
+    "releaseDate": "2022-07-19",
+    "recommendations": 158920,
+    "featured": false,
+    "steamAppId": 1332010
+  },
+  {
+    "name": "Dave the Diver",
+    "genre": "Casual",
+    "tags": [
+      "Adventure",
+      "Casual",
+      "RPG",
+      "Simulation"
+    ],
+    "price": 19.99,
+    "discount": 0,
+    "image": "https://cdn.akamai.steamstatic.com/steam/apps/1868140/header.jpg",
+    "description": "Ban ngày lặn biển bắt cá, ban đêm điều hành quán sushi. Kết hợp khám phá và quản lý rất cuốn.",
+    "developer": "MINTROCKET",
+    "releaseDate": "2023-06-28",
+    "recommendations": 144441,
+    "featured": false,
+    "steamAppId": 1868140
+  }
+]
