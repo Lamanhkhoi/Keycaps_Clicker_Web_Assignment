@@ -1,19 +1,286 @@
-/* Màu/font gom về MỘT file. Bảng màu lấy cảm hứng Steam (xanh đêm + xanh dương nhạt).
-   Chốt phong cách sau cũng chỉ cần sửa biến ở :root, không đụng component. */
+/* Giao diện "Steam Refined": nền xanh đêm, viền xanh dương phát sáng, nút xanh lá kiểu Steam.
+   Bootstrap 5.3 có chế độ tối: thẻ <html data-bs-theme="dark"> trong index.html đã làm tối
+   ô nhập, bảng, nút... Màu gom ở :root bên dưới, muốn đổi phong cách chỉ cần sửa các biến này. */
+
 :root {
   --bg-main: #1b2838;
   --bg-dark: #171a21;
   --bg-card: #16202d;
+  --bg-input: #101a26;
+  --border-color: #2a475e;
   --text-main: #c7d5e0;
   --text-muted: #8f98a0;
   --accent: #66c0f4;
-  --price-bg: #4c6b22;      /* nền ô giá khi giảm */
-  --price-sale: #beee11;    /* chữ % giảm giá */
+}
+
+[data-bs-theme="dark"] {
+  --bs-body-bg: var(--bg-main);
+  --bs-body-color: var(--text-main);
+  --bs-border-color: var(--border-color);
+}
+
+/* Cho footer luôn nằm dưới cùng, kể cả khi trang ngắn */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 body {
-  background: var(--bg-main);
+  background:
+    radial-gradient(900px 500px at 15% -5%, rgba(102, 192, 244, 0.14), transparent 60%),
+    linear-gradient(180deg, #1b2838 0%, #14202e 100%);
+  background-attachment: fixed;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+a:hover {
+  color: #fff;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #fff;
+}
+
+/* Tiêu đề mục có thanh màu bên trái */
+main h2 {
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+}
+
+/* ===== Navbar ===== */
+.site-navbar {
+  background: linear-gradient(180deg, #1a1f29, #10131a) !important;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+}
+
+.site-navbar .navbar-brand {
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #fff;
+  font-size: 1.15rem;
+}
+
+.site-navbar .nav-link {
+  padding: 0.9rem 0.9rem;
+  border-bottom: 2px solid transparent;
+}
+
+.site-navbar .nav-link.active,
+.site-navbar .nav-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ===== Banner trang chủ ===== */
+.hero-banner {
+  padding: 5.5rem 0 !important;
+  background:
+    linear-gradient(100deg, rgba(23, 26, 33, 0.95) 25%, rgba(23, 26, 33, 0.35) 100%),
+    radial-gradient(600px 300px at 80% 40%, rgba(102, 192, 244, 0.35), transparent 70%),
+    linear-gradient(135deg, #2a475e, #171a21);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hero-banner h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 800;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+}
+
+.hero-banner .lead {
+  color: var(--text-main);
+  max-width: 520px;
+}
+
+/* ===== Thẻ game ===== */
+.game-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55), 0 0 18px rgba(102, 192, 244, 0.25);
+}
+
+.game-card .card-img-top {
+  aspect-ratio: 460 / 215;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.game-card:hover .card-img-top {
+  transform: scale(1.06);
+}
+
+/* Ảnh phóng to khi rê chuột nhưng không tràn ra ngoài thẻ */
+.game-card a:has(.card-img-top) {
+  display: block;
+  overflow: hidden;
+}
+
+.game-title-link {
+  color: #fff;
+  font-size: 1.02rem;
+}
+
+.game-genre {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== Nút xanh lá kiểu Steam ===== */
+.btn-success {
+  background: linear-gradient(to right, #75b022 5%, #588a1b 95%);
+  border: 0;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  transition: filter 0.15s, transform 0.15s;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+  background: linear-gradient(to right, #75b022 5%, #588a1b 95%);
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+/* ===== Giá kiểu Steam ===== */
+.discount-badge {
+  background: #4c6b22;
+  color: #beee11;
+  padding: 4px 8px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border-radius: 2px;
+}
+
+.original-price {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.price-tag {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ===== Ô nhập liệu ===== */
+.form-control,
+.form-select,
+.input-group-text {
+  background-color: var(--bg-input);
+  border-color: var(--border-color);
   color: var(--text-main);
 }
 
-/* TODO (UI): style cho .game-card, .price-tag, .discount-badge, footer... */
+.input-group-text {
+  color: var(--text-muted);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--bg-input);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.2rem rgba(102, 192, 244, 0.2);
+}
+
+.form-control::placeholder {
+  color: #5f6b78;
+}
+
+/* ===== Trang chi tiết game ===== */
+.detail-image {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.detail-panel {
+  background: rgba(22, 32, 45, 0.85);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+
+.price-box {
+  display: inline-block;
+  background: var(--bg-input);
+  border-radius: 4px;
+  padding: 0.6rem 0.9rem;
+}
+
+/* ===== Giỏ hàng ===== */
+.cart-row {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.summary-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1.25rem;
+}
+
+/* ===== Bảng (trang Admin) ===== */
+.table {
+  --bs-table-bg: transparent;
+}
+
+/* ===== Khung xương khi đang tải (skeleton) ===== */
+.skeleton-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.skeleton-img {
+  aspect-ratio: 460 / 215;
+  background: linear-gradient(90deg, #16202d 25%, #22364a 50%, #16202d 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  background: #10131a;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-color);
+}

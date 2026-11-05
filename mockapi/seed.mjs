@@ -1,6 +1,6 @@
 // Đẩy dữ liệu mẫu lên MockAPI.
 // Cách dùng (chạy ở thư mục gốc project):
-//   node mockapi/seed.mjs https://<project-id>.mockapi.io/api/v1
+//   node mockapi/seed.mjs https://<project-secret>.mockapi.io
 //
 // Điều kiện: đã tạo sẵn 2 resource "games" và "orders" trên MockAPI, và cả hai đang RỖNG
 // (MockAPI hay tự sinh vài record giả khi tạo resource → xoá hết trước).
@@ -10,7 +10,7 @@ import { readFile } from "node:fs/promises";
 
 const base = process.argv[2]?.replace(/\/$/, "");
 if (!base) {
-  console.error("Thiếu Base URL.\nVí dụ: node mockapi/seed.mjs https://abc123.mockapi.io/api/v1");
+  console.error("Thiếu Base URL.\nVí dụ: node mockapi/seed.mjs https://abc123.mockapi.io");
   process.exit(1);
 }
 

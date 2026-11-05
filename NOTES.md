@@ -6,26 +6,27 @@
 ## Quyết định đã chốt
 - **Đổi đề tài (chủ đề tự do): web bán game kiểu Steam** (thay cho keycaps/clickers). Game = sản phẩm, thể loại = lọc, "Yêu cầu thêm game" = thay form custom.
 - Stack: Vite + React (JavaScript), react-router-dom, bootstrap + react-bootstrap, formik + yup. (Đã xác nhận: lớp học hết các phần này.)
-- Dữ liệu: **MockAPI**, 2 resource `games` và `orders` (xem `mockapi/README.md`). Gọi API bằng `fetch` trong `useEffect`, gom ở `src/api/gameApi.js`.
+- Dữ liệu: **MockAPI**, 2 resource `games` và `orders` (xem `mockapi/README.md`). Gọi API bằng `axios` (.then/.catch/.finally) trong `useEffect`, gom ở `src/api/gameApi.js`.
 - Ảnh: link Steam CDN lưu trong field `image` của MockAPI.
 - Tên shop tạm "PixelStore" và `API_URL`: đặt ở MỘT chỗ (`src/config.js`).
 - Giao diện: màu/font gom vào MỘT file (`src/styles/theme.css`), chốt phong cách sau cũng không phải sửa component.
 - Form: dùng `useFormik` + `Yup.object({...})` đúng như Exercise 12 (không dùng `<Formik>`/`<Field>`).
+- Style code (đổi 11/2026): giống Lab6 — arrow function cho callback/hàm xử lý, component vẫn `function Ten()`, nháy đơn, không chấm phẩy.
 - Router: viết kiểu slide `<BrowserRouter>` + `<Routes>` + `<Route>` + `<Link>`.
 
 ## KHÔNG dùng (vì chưa học / ngoài phạm vi) – để trả lời "sao em không dùng X?"
 - Redux → đã có Context + useReducer là đủ cho giỏ hàng.
-- Backend thật (Node/Express, Firebase…) → dùng MockAPI là đủ. Không cài thêm axios (đã có `fetch`).
+- Backend thật (Node/Express, Firebase…) → dùng MockAPI là đủ. Gọi API bằng `axios` (đã học ở EX_9/Lab6), thay cho `fetch` ban đầu.
 - PropTypes, lazy/code-splitting → chưa học trên lớp.
 - Tailwind, Next.js, TypeScript, UI kit khác → ngoài phạm vi.
 
 ## Bản đồ file hiện tại (khung sườn đã tạo, logic chính do Khôi tự code)
-- Dữ liệu: `mockapi/games.json`, `mockapi/orders.json`, `mockapi/seed.mjs`
-- API: `src/api/gameApi.js` (đã viết sẵn) · giá: `src/utils/price.js`
-- State: `src/reducers/cartReducer.js`, `src/reducers/filterReducer.js`, `src/context/CartContext.jsx`, `src/hooks/useLocalStorage.js`
-- Component: `GameCard`, `PriceTag`, `FilterBar` (đã nối props), `CartItemRow`, `StatusMessage` (đã viết sẵn), `GameForm`, `AppNavbar`, `Footer`
+- Dữ liệu: `mockapi/games.json`, `mockapi/orders.json`, `mockapi/seed.mjs` (đã nạp lên MockAPI, app không đọc các file này)
+- API: `src/api/gameApi.js` · giá: `src/utils/price.js`
+- State: `src/reducers/cartReducer.js`, `src/reducers/filterReducer.js`, `src/context/CartContext.jsx` (giỏ hàng lưu localStorage bằng useEffect)
+- Component: `AppNavbar`, `Footer`, `GameCard`, `GameGrid`, `PriceTag`, `FilterBar`, `CartItemRow`, `StatusMessage`, `FormField`, `GameForm`
 - Trang: Home, Products, ProductDetail, Cart, Checkout, OrderSuccess, RequestGame (`/request`), Admin (`/admin`), NotFound
-- Mỗi file có `TODO` + câu hỏi vấn đáp ngay trong comment. Bảng dưới là kế hoạch gốc, các tên file `custom*` đọc là `RequestGamePage`.
+- Trạng thái: TẤT CẢ đã code xong và test trên trình duyệt (xem `VAN_DAP.md` để ôn). Bảng dưới là kế hoạch gốc.
 
 ## Bảng chính
 

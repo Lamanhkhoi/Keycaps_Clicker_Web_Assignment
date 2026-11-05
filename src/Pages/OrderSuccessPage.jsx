@@ -1,16 +1,48 @@
-import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Alert, Button, Container } from 'react-bootstrap'
+import { Link, Navigate, useLocation } from 'react-router-dom'
+import { formatPrice } from '../utils/price'
 
-// Đặt hàng thành công. Thông tin đơn được truyền qua navigate("/order-success", { state: { order } }).
+// Trang báo đặt hàng thành công.
+// Đơn được CheckoutPage gửi sang qua navigate('/order-success', { state: { order } }).
 export default function OrderSuccessPage() {
-  // TODO 1: const { state } = useLocation();  const order = state?.order;
-  // TODO 2: vào thẳng /order-success (không có order) thì sao?
-  //         → return <Navigate to="/" replace />;   Hỏi vấn đáp: "?." làm gì? replace để làm gì?
-  // TODO 3: hiện mã đơn (order.id), tên khách, danh sách game, tổng tiền
+  const location = useLocation()
+
+  // Gõ thẳng /order-success thì location.state là null -> order = null
+  const order = location.state !== null ? location.state.order : null
+
+  // Không có đơn để hiện -> về trang chủ.
+  // replace: thay trang hiện tại trong lịch sử, nên bấm Back không quay lại trang trống này.
+  if (order === null) {
+    return <Navigate to="/" replace />
+  }
+
   return (
     <Container className="py-4">
-      <h1>Đặt hàng thành công</h1>
-      <Link to="/products">Tiếp tục mua sắm</Link>
+      <Alert variant="success">
+        <h1 className="h3">Đặt hàng thành công!</h1>
+        <p className="mb-0">
+          Cảm ơn {order.customerName}. Mã đơn của bạn là <strong>#{order.id}</strong>.
+        </p>
+      </Alert>
+
+      <h4>Chi tiết đơn hàng</h4>
+      {order.items.map((item) => (
+        <div key={item.gameId} className="d-flex justify-content-between py-1">
+          <span>
+            {item.name} x {item.qty}
+          </span>
+          <span>{formatPrice(item.price * item.qty)}</span>
+        </div>
+      ))}
+      <hr />
+      <div className="d-flex justify-content-between fs-5 mb-4">
+        <strong>Tổng cộng</strong>
+        <strong>{formatPrice(order.total)}</strong>
+      </div>
+
+      <Button as={Link} to="/products" variant="success">
+        Tiếp tục mua sắm
+      </Button>
     </Container>
-  );
+  )
 }

@@ -1,33 +1,40 @@
-// Tất cả lời gọi MockAPI nằm ở đây. Component KHÔNG tự viết fetch,
-// chỉ import hàm bên dưới → đổi API sau này chỉ sửa 1 file.
-import { API_URL } from "../config";
+// Tất cả lời gọi MockAPI nằm ở đây. Các trang chỉ import hàm bên dưới, không tự gọi axios.
+import axios from 'axios'
+import { API_URL } from '../config'
 
-// Hàm dùng chung cho mọi lời gọi.
-// fetch KHÔNG tự ném lỗi khi server trả 404/500 → phải tự kiểm tra res.ok.
-async function request(path, options) {
-  const res = await fetch(`${API_URL}${path}`, options);
-  if (!res.ok) {
-    throw new Error(`Request failed (${res.status})`);
-  }
-  return res.json();
-}
+const GAMES_URL = `${API_URL}/games`
+const ORDERS_URL = `${API_URL}/orders`
 
-// Tạo options cho POST / PUT: gửi JSON
-function jsonOptions(method, data) {
-  return {
-    method,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  };
-}
+// axios trả về response (cái thùng), dữ liệu thật nằm trong response.data
+// -> bóc .data MỘT lần ở đây để các trang nhận dữ liệu sạch.
+// File này cố ý KHÔNG có .catch: để lỗi chảy ra cho trang tự báo lỗi.
 
 // ----- games -----
-export const getGames = () => request("/games");
-export const getGameById = (id) => request(`/games/${id}`);
-export const createGame = (game) => request("/games", jsonOptions("POST", game));
-export const updateGame = (id, game) => request(`/games/${id}`, jsonOptions("PUT", game));
-export const deleteGame = (id) => request(`/games/${id}`, { method: "DELETE" });
+export function getGames() {
+  return axios.get(GAMES_URL).then((response) => response.data)
+}
 
-// ----- orders (gồm 2 loại: type "purchase" và type "request") -----
-export const getOrders = () => request("/orders");
-export const createOrder = (order) => request("/orders", jsonOptions("POST", order));
+export function getGameById(id) {
+  return axios.get(`${GAMES_URL}/${id}`).then((response) => response.data)
+}
+
+export function createGame(game) {
+  return axios.post(GAMES_URL, game).then((response) => response.data)
+}
+
+export function updateGame(id, game) {
+  return axios.put(`${GAMES_URL}/${id}`, game).then((response) => response.data)
+}
+
+export function deleteGame(id) {
+  return axios.delete(`${GAMES_URL}/${id}`).then((response) => response.data)
+}
+
+// ----- orders (2 loại: type 'purchase' là đơn mua, type 'request' là yêu cầu thêm game) -----
+export function getOrders() {
+  return axios.get(ORDERS_URL).then((response) => response.data)
+}
+
+export function createOrder(order) {
+  return axios.post(ORDERS_URL, order).then((response) => response.data)
+}

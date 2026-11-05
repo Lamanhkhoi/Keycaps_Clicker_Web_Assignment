@@ -1,12 +1,12 @@
-import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-// path="*" khớp mọi URL không có route nào khớp ở trên.
+// path='*' trong App.jsx khớp mọi địa chỉ không có route nào khớp ở trên.
 export default function NotFoundPage() {
   return (
     <Container className="py-5 text-center">
-      <h1>404 - Not Found</h1>
+      <h1>404 - Không tìm thấy trang</h1>
       <Link to="/">Về trang chủ</Link>
     </Container>
-  );
+  )
 }

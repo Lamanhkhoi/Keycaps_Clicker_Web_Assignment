@@ -40,7 +40,7 @@ Gói free của MockAPI giới hạn số project/resource (có nguồn ghi 2 re
 2. **Xoá hết record giả** MockAPI tự sinh (mặc định hay có ~10 record mỗi resource).
 3. Chạy ở thư mục gốc project (Node 18+, không cần cài thêm gì):
    ```
-   node mockapi/seed.mjs https://<project-id>.mockapi.io/api/v1
+   node mockapi/seed.mjs https://<project-secret>.mockapi.io
    ```
    Script tự dừng nếu resource chưa rỗng. Nó POST 45 request.
 4. Dán Base URL vào `src/config.js` (`API_URL`).

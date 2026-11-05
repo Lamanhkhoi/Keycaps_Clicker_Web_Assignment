@@ -1,8 +1,26 @@
-import { formatPrice, getFinalPrice } from "../utils/price";
+import { formatPrice, getFinalPrice } from '../utils/price'
 
-// Hiển thị giá giống Steam: có giảm thì hiện "-75%", giá gốc gạch ngang, giá mới.
+// Hiển thị giá giống Steam:
+//   - Có giảm giá: '-75%', giá gốc gạch ngang, giá sau giảm
+//   - Không giảm: chỉ hiện giá
 export default function PriceTag({ game }) {
-  // TODO: if (game.discount > 0) → render badge "-{discount}%" + <s>giá gốc</s> + giá sau giảm
-  //       (class gợi ý: "discount-badge", "price-tag" đã có chỗ trong styles/theme.css)
-  return <span className="price-tag">{formatPrice(getFinalPrice(game))}</span>;
+  const finalPrice = getFinalPrice(game)
+
+  if (game.discount > 0) {
+    return (
+      <div className="d-flex align-items-center gap-2">
+        <span className="discount-badge">-{game.discount}%</span>
+        <span className="original-price">
+          <s>{formatPrice(game.price)}</s>
+        </span>
+        <span className="price-tag">{formatPrice(finalPrice)}</span>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <span className="price-tag">{formatPrice(finalPrice)}</span>
+    </div>
+  )
 }

@@ -1,30 +1,42 @@
-import { createContext, useContext } from "react";
-// import { useReducer } from "react";
-// import { cartReducer, initialCart } from "../reducers/cartReducer";
+import { createContext, useContext, useEffect, useReducer } from 'react'
+import { cartReducer } from '../reducers/cartReducer'
 
-// Context giải quyết prop drilling: Navbar (badge), CartPage, GameCard (nút Add)
-// đều cần giỏ hàng mà không phải truyền props qua nhiều tầng.
-const CartContext = createContext(null);
+// Context giải quyết "prop drilling" (truyền props qua nhiều tầng component).
+// Navbar (hiện số lượng), CartPage, GameCard (nút Thêm) đều dùng chung giỏ hàng này.
+const CartContext = createContext(null)
+
+// Đọc giỏ đã lưu trong localStorage (nếu có), để F5 trang không bị mất giỏ.
+const loadCart = () => {
+  const saved = localStorage.getItem('cart')
+  if (saved === null) {
+    return []
+  }
+  return JSON.parse(saved)
+}
 
 export function CartProvider({ children }) {
-  // TODO 1: const [cart, dispatch] = useReducer(cartReducer, initialCart);
-  // TODO 2 (bước 7): lưu giỏ vào localStorage để F5 không mất
-  //         (dùng hooks/useLocalStorage hoặc useEffect — tự chọn, giải thích được)
-  // TODO 3: totalItems, totalPrice là DỮ LIỆU SUY RA từ cart (tính khi render),
-  //         KHÔNG tạo state riêng. Dùng reduce().
+  // Tham số thứ 3 (loadCart) chỉ chạy 1 lần lúc đầu để lấy giá trị khởi tạo
+  const [cart, dispatch] = useReducer(cartReducer, [], loadCart)
 
-  const value = {
-    cart: [], // TODO: thay bằng cart thật
-    dispatch: () => {}, // TODO: thay bằng dispatch thật
-    totalItems: 0,
-    totalPrice: 0,
-  };
+  // Mỗi khi cart đổi thì lưu lại vào localStorage. [cart]: effect chỉ chạy khi cart đổi.
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
 
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+  // totalItems và totalPrice SUY RA từ cart -> tính khi render, không tạo state riêng.
+  let totalItems = 0
+  let totalPrice = 0
+  cart.forEach((item) => {
+    totalItems = totalItems + item.qty
+    totalPrice = totalPrice + item.price * item.qty
+  })
+  totalPrice = Math.round(totalPrice * 100) / 100
+
+  const value = { cart, dispatch, totalItems, totalPrice }
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
 
-// Hook tiện dụng để component gọi: const { cart, dispatch } = useCart();
+// Lối tắt: trong component chỉ cần viết const { cart, dispatch } = useCart()
 // eslint-disable-next-line react-refresh/only-export-components
-export function useCart() {
-  return useContext(CartContext);
-}
+export const useCart = () => useContext(CartContext)

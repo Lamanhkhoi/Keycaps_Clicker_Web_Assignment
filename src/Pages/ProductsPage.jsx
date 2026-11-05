@@ -1,20 +1,73 @@
-import { Container } from "react-bootstrap";
+import { useEffect, useReducer, useState } from 'react'
+import { Container } from 'react-bootstrap'
+import { getGames } from '../api/gameApi'
+import FilterBar from '../Components/FilterBar'
+import GameGrid from '../Components/GameGrid'
+import GameSkeleton from '../Components/GameSkeleton'
+import StatusMessage from '../Components/StatusMessage'
+import { filterReducer, initialFilters } from '../reducers/filterReducer'
+import { getFinalPrice } from '../utils/price'
 
-// Cửa hàng: danh sách game + tìm kiếm + lọc thể loại + sắp xếp.
+// Trang Cửa hàng: danh sách game, tìm kiếm, lọc thể loại, sắp xếp.
 export default function ProductsPage() {
-  // TODO 1: games / loading / error (useState) + useEffect gọi getGames()
-  // TODO 2: filters = useReducer(filterReducer, initialFilters)   → thể loại + kiểu sắp xếp
-  //         search  = useState("")                                → ô tìm kiếm
-  //         Hỏi vấn đáp: vì sao filter dùng useReducer còn search dùng useState?
-  // TODO 3: visibleGames = games.filter(theo genre).filter(theo search).sort(theo sortBy)
-  //         → tính ngay khi render, KHÔNG lưu vào state. Lưu ý .sort() sửa mảng gốc → copy trước ([...arr])
-  //         Gợi ý sortBy: "popular" = recommendations giảm dần; "price-*" dùng getFinalPrice (utils/price.js)
-  // TODO 4: render <FilterBar ... /> (props xem Components/FilterBar.jsx),
-  //         <StatusMessage />, và lưới <Row><Col>… <GameCard key={game.id} game={game} /></Col></Row>
-  //         Danh sách rỗng thì hiện "Không tìm thấy game" (conditional rendering)
+  const [games, setGames] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  // Ô tìm kiếm: chỉ 1 chuỗi -> useState
+  const [search, setSearch] = useState('')
+
+  // Bộ lọc có 2 giá trị (genre, sortBy) -> useReducer
+  const [filters, dispatch] = useReducer(filterReducer, initialFilters)
+
+  useEffect(() => {
+    getGames()
+      .then((data) => setGames(data))
+      .catch(() => setError('Không tải được danh sách game. Vui lòng thử lại sau.'))
+      .finally(() => setLoading(false))
+  }, [])
+
+  // Danh sách hiển thị được TÍNH từ games + search + filters mỗi lần render, không lưu state.
+
+  // Bước 1: lọc theo thể loại và từ khóa.
+  // filter trả về mảng MỚI, nên sort ở bước 2 không làm hỏng mảng games gốc.
+  const visibleGames = games.filter((game) => {
+    const matchGenre = filters.genre === 'All' || game.genre === filters.genre
+    const matchSearch = game.name.toLowerCase().includes(search.toLowerCase())
+    return matchGenre && matchSearch
+  })
+
+  // Bước 2: sắp xếp. Hàm so sánh (a, b): kết quả < 0 thì a đứng trước, > 0 thì b đứng trước
+  visibleGames.sort((a, b) => {
+    if (filters.sortBy === 'price-asc') {
+      return getFinalPrice(a) - getFinalPrice(b)
+    }
+    if (filters.sortBy === 'price-desc') {
+      return getFinalPrice(b) - getFinalPrice(a)
+    }
+    if (filters.sortBy === 'name') {
+      return a.name.localeCompare(b.name)
+    }
+    // 'popular': nhiều lượt đánh giá hơn thì đứng trước
+    return b.recommendations - a.recommendations
+  })
+
   return (
     <Container className="py-4">
-      <h1>Cửa hàng</h1>
+      <h1 className="mb-4">Cửa hàng</h1>
+
+      <FilterBar
+        filters={filters}
+        search={search}
+        onSearchChange={(value) => setSearch(value)}
+        onGenreChange={(value) => dispatch({ type: 'SET_GENRE', payload: value })}
+        onSortChange={(value) => dispatch({ type: 'SET_SORT', payload: value })}
+      />
+
+      {/* Đang tải thì hiện khung xương, tải xong (và không lỗi) mới hiện danh sách */}
+      {loading && <GameSkeleton />}
+      <StatusMessage error={error} />
+      {!loading && error === '' && <GameGrid games={visibleGames} />}
     </Container>
-  );
+  )
 }
