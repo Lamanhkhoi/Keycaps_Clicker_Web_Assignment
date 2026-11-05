@@ -1,12 +1,27 @@
 import { useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { Alert, Button, Col, Container, Row } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { createOrder } from '../api/gameApi'
-import FormField from '../Components/FormField'
 import { useCart } from '../context/CartContext'
 import { formatPrice } from '../utils/price'
+
+// PHẦN 1: giá trị ban đầu — mỗi key = name của một ô
+const initialValues = {
+  customerName: '',
+  email: '',
+}
+
+// PHẦN 2: luật Yup
+const validationSchema = Yup.object({
+  customerName: Yup.string()
+    .required('Vui lòng nhập họ tên')
+    .min(2, 'Họ tên tối thiểu 2 ký tự'),
+  email: Yup.string()
+    .required('Vui lòng nhập email')
+    .email('Email không hợp lệ'),
+})
 
 // Trang thanh toán (giả lập, không trả tiền thật).
 // Luồng: điền form -> POST /orders lên MockAPI -> sang trang order-success -> xóa giỏ
@@ -15,15 +30,10 @@ export default function CheckoutPage() {
   const navigate = useNavigate()
   const [errorMessage, setErrorMessage] = useState('')
 
+  // PHẦN 3: khởi tạo Formik
   const formik = useFormik({
-    initialValues: {
-      customerName: '',
-      email: '',
-    },
-    validationSchema: Yup.object({
-      customerName: Yup.string().min(2, 'Tên ít nhất 2 ký tự').required('Vui lòng nhập họ tên'),
-      email: Yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
-    }),
+    initialValues,
+    validationSchema,
     onSubmit: (values) => {
       // Biến giỏ hàng thành danh sách items để lưu trong đơn
       const items = cart.map((item) => ({
@@ -68,6 +78,7 @@ export default function CheckoutPage() {
     )
   }
 
+  // PHẦN 4: giao diện
   return (
     <Container className="py-4">
       <h1 className="mb-4">Thanh toán</h1>
@@ -75,14 +86,46 @@ export default function CheckoutPage() {
         <Col md={6}>
           <h4>Thông tin của bạn</h4>
           {errorMessage !== '' && <Alert variant="danger">{errorMessage}</Alert>}
-          <Form onSubmit={formik.handleSubmit}>
-            <FormField formik={formik} name="customerName" label="Họ và tên" />
-            <FormField formik={formik} name="email" label="Email" type="email" />
+
+          <form onSubmit={formik.handleSubmit} noValidate>
+            <div className="mb-3">
+              <label htmlFor="customerName" className="form-label">Họ và tên</label>
+              <input
+                type="text"
+                id="customerName"
+                name="customerName"
+                className={formik.touched.customerName && formik.errors.customerName ? 'form-control is-invalid' : 'form-control'}
+                value={formik.values.customerName}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.customerName && formik.errors.customerName && (
+                <div className="text-danger small">{formik.errors.customerName}</div>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className={formik.touched.email && formik.errors.email ? 'form-control is-invalid' : 'form-control'}
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.email && formik.errors.email && (
+                <div className="text-danger small">{formik.errors.email}</div>
+              )}
+            </div>
+
             <Button type="submit" variant="success" disabled={formik.isSubmitting}>
               {formik.isSubmitting ? 'Đang gửi...' : 'Đặt hàng'}
             </Button>
-          </Form>
+          </form>
         </Col>
+
         <Col md={6}>
           <h4>Đơn hàng của bạn</h4>
           {cart.map((item) => (

@@ -47,7 +47,7 @@ export default function AdminPage() {
     setEditingGame(null)
   }
 
-  // Dùng chung cho THÊM và SỬA. values từ form: ô number vẫn trả về CHUỖI -> đổi bằng Number()
+  // Dùng chung cho THÊM và SỬA. values từ form: ô number có thể là CHUỖI -> đổi bằng Number()
   const handleSave = (values) => {
     const gameData = {
       ...values,
@@ -55,26 +55,25 @@ export default function AdminPage() {
       discount: Number(values.discount),
     }
 
-    if (editingGame !== null) {
-      // UPDATE: giữ field cũ (tags, recommendations...) rồi ghi đè bằng dữ liệu mới
-      const updatedGame = { ...editingGame, ...gameData }
-      updateGame(editingGame.id, updatedGame)
-        .then((savedGame) => {
+    // SỬA: giữ field cũ (tags, recommendations...) rồi ghi đè dữ liệu mới -> PUT
+    // THÊM: thêm vài field mặc định cho game mới -> POST
+    const request =
+      editingGame !== null
+        ? updateGame(editingGame.id, { ...editingGame, ...gameData })
+        : createGame({ ...gameData, tags: [gameData.genre], recommendations: 0, steamAppId: 0 })
+
+    // return Promise để Formik biết khi nào lưu xong (nút 'Đang lưu...' tự mở lại)
+    return request
+      .then((savedGame) => {
+        if (editingGame !== null) {
           // Thay đúng game vừa sửa trong mảng bằng bản mới từ server
           setGames(games.map((game) => (game.id === savedGame.id ? savedGame : game)))
-          handleCancel()
-        })
-        .catch(() => setError('Không lưu được thay đổi.'))
-    } else {
-      // CREATE: game mới cần thêm vài field mặc định
-      const newGame = { ...gameData, tags: [gameData.genre], recommendations: 0, steamAppId: 0 }
-      createGame(newGame)
-        .then((savedGame) => {
+        } else {
           setGames([...games, savedGame])
-          handleCancel()
-        })
-        .catch(() => setError('Không thêm được game.'))
-    }
+        }
+        handleCancel()
+      })
+      .catch(() => setError(editingGame !== null ? 'Không lưu được thay đổi.' : 'Không thêm được game.'))
   }
 
   // DELETE: hỏi xác nhận, xóa trên server, rồi bỏ game đó khỏi state
@@ -114,12 +113,12 @@ export default function AdminPage() {
         <Card className="mb-4">
           <Card.Body>
             <h3 className="h5">{editingGame === null ? 'Thêm game mới' : `Sửa game: ${editingGame.name}`}</h3>
-            {/* key đổi -> React tạo lại form mới, nên initialValues đổi theo game đang sửa */}
-            <GameForm
-              key={editingGame === null ? 'new' : editingGame.id}
-              game={editingGame}
-              onSubmit={handleSave}
-            />
+            {/* Sửa: truyền game làm initialValues. Thêm: không truyền -> GameForm dùng emptyGame */}
+            {editingGame !== null ? (
+              <GameForm initialValues={editingGame} onSubmit={handleSave} submitLabel="Cập nhật" />
+            ) : (
+              <GameForm onSubmit={handleSave} submitLabel="Thêm" />
+            )}
             <Button variant="secondary" className="mt-2" onClick={handleCancel}>
               Hủy
             </Button>

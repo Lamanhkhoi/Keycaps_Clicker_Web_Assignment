@@ -10,7 +10,7 @@
 - Ảnh: link Steam CDN lưu trong field `image` của MockAPI.
 - Tên shop tạm "PixelStore" và `API_URL`: đặt ở MỘT chỗ (`src/config.js`).
 - Giao diện: màu/font gom vào MỘT file (`src/styles/theme.css`), chốt phong cách sau cũng không phải sửa component.
-- Form: dùng `useFormik` + `Yup.object({...})` đúng như Exercise 12 (không dùng `<Formik>`/`<Field>`).
+- Form: dùng `useFormik` + `Yup.object({...})` đúng như Exercise 12 (không dùng `<Formik>`/`<Field>`). Khuôn viết giống Lab4/5/6: initialValues + validationSchema để ngoài component, mỗi ô viết tay value/onChange/onBlur (đã bỏ FormField.jsx).
 - Style code (đổi 11/2026): giống Lab6 — arrow function cho callback/hàm xử lý, component vẫn `function Ten()`, nháy đơn, không chấm phẩy.
 - Router: viết kiểu slide `<BrowserRouter>` + `<Routes>` + `<Route>` + `<Link>`.
 
@@ -24,7 +24,7 @@
 - Dữ liệu: `mockapi/games.json`, `mockapi/orders.json`, `mockapi/seed.mjs` (đã nạp lên MockAPI, app không đọc các file này)
 - API: `src/api/gameApi.js` · giá: `src/utils/price.js`
 - State: `src/reducers/cartReducer.js`, `src/reducers/filterReducer.js`, `src/context/CartContext.jsx` (giỏ hàng lưu localStorage bằng useEffect)
-- Component: `AppNavbar`, `Footer`, `GameCard`, `GameGrid`, `PriceTag`, `FilterBar`, `CartItemRow`, `StatusMessage`, `FormField`, `GameForm`
+- Component: `AppNavbar`, `Footer`, `GameCard`, `GameGrid`, `PriceTag`, `FilterBar`, `CartItemRow`, `StatusMessage`, `GameForm`
 - Trang: Home, Products, ProductDetail, Cart, Checkout, OrderSuccess, RequestGame (`/request`), Admin (`/admin`), NotFound
 - Trạng thái: TẤT CẢ đã code xong và test trên trình duyệt (xem `VAN_DAP.md` để ôn). Bảng dưới là kế hoạch gốc.
 

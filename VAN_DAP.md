@@ -58,8 +58,11 @@ Mẹo: khi thầy chỉ vào một dòng, hãy nói theo mẫu "dòng này (làm
 - Hỏi: *`[cart]` trong useEffect nghĩa là gì?* -> Effect chỉ chạy khi `cart` thay đổi.
 
 ## 8. Thanh toán + form
-**File:** `CheckoutPage.jsx`, `OrderSuccessPage.jsx`, `Components/FormField.jsx`
-- `useFormik({ initialValues, validationSchema, onSubmit })`. Yup mô tả luật kiểm tra (`required`, `email`, `min`...).
+**File:** `CheckoutPage.jsx`, `RequestGamePage.jsx`, `OrderSuccessPage.jsx`, `Components/GameForm.jsx`
+- Khuôn giống Lab4/5/6, chia 4 phần: PHẦN 1 `initialValues` và PHẦN 2 `validationSchema` khai báo NGOÀI component; PHẦN 3 `useFormik({ initialValues, validationSchema, onSubmit })`; PHẦN 4 giao diện.
+- Yup: `.required()` viết trước, sau đó mới `.min()`, `.email()`, `.url()`... mỗi luật một dòng.
+- Mỗi ô tự gắn `value`, `onChange={formik.handleChange}`, `onBlur={formik.handleBlur}`; class `form-control is-invalid` khi có lỗi; lỗi hiện bằng `<div className="text-danger small">`.
+- `<form noValidate>`: tắt kiểm tra của trình duyệt để chỉ Yup báo lỗi (tiếng Việt).
 - `touched`: ô đã được người dùng chạm vào. Chỉ hiện lỗi khi `touched` để không báo lỗi ngay lúc vừa mở form.
 - `onSubmit` chỉ chạy khi mọi ô hợp lệ. Gửi `POST /orders`, thành công thì `dispatch({type:"CLEAR"})` và `navigate("/order-success", { state: { order } })`.
 - Hỏi: *Vì sao phải xóa giỏ sau khi đặt?* -> Đơn đã được ghi nhận. Không xóa thì người dùng có thể mua trùng.
@@ -69,7 +72,8 @@ Mẹo: khi thầy chỉ vào một dòng, hãy nói theo mẫu "dòng này (làm
 **File:** `AdminPage.jsx`, `GameForm.jsx`
 - **Read:** `getGames()` trong `useEffect`. **Create:** `createGame()` rồi thêm game mới vào state. **Update:** `updateGame(id, data)` rồi thay đúng game trong state bằng `map`. **Delete:** `deleteGame(id)` rồi bỏ game khỏi state bằng `filter`.
 - `window.confirm` hỏi xác nhận trước khi xóa.
-- `key` trên `<GameForm key=...>`: khi đổi sang game khác, React tạo lại form mới với giá trị mới.
+- Giống Lab6 OrchidForm: sửa thì `<GameForm initialValues={editingGame} ... />`, thêm thì không truyền (dùng `emptyGame`). `enableReinitialize: true` để khi bấm Sửa game khác, form nạp lại giá trị mới.
+- `handleSave` return Promise để Formik biết lúc nào lưu xong (nút 'Đang lưu...' tự mở lại).
 - Giá trị ô `type="number"` vẫn là chuỗi, nên trước khi gửi phải đổi bằng `Number(...)`.
 
 ## 10. Trang chủ và Yêu cầu game

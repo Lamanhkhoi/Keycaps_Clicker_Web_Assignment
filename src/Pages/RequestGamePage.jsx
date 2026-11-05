@@ -1,9 +1,31 @@
 import { useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { Alert, Button, Col, Container, Row } from 'react-bootstrap'
 import { createOrder } from '../api/gameApi'
-import FormField from '../Components/FormField'
+
+// PHẦN 1: giá trị ban đầu — mỗi key = name của một ô
+const initialValues = {
+  customerName: '',
+  email: '',
+  gameName: '',
+  note: '',
+}
+
+// PHẦN 2: luật Yup
+const validationSchema = Yup.object({
+  customerName: Yup.string()
+    .required('Vui lòng nhập họ tên')
+    .min(2, 'Họ tên tối thiểu 2 ký tự'),
+  email: Yup.string()
+    .required('Vui lòng nhập email')
+    .email('Email không hợp lệ'),
+  gameName: Yup.string()
+    .required('Vui lòng nhập tên game bạn muốn'),
+  note: Yup.string()
+    .required('Vui lòng nhập ghi chú')
+    .min(10, 'Ghi chú tối thiểu 10 ký tự'),
+})
 
 // Form 'Yêu cầu thêm game'. Gửi lên MockAPI resource 'orders' với type = 'request'.
 export default function RequestGamePage() {
@@ -11,32 +33,27 @@ export default function RequestGamePage() {
   const [message, setMessage] = useState('')
   const [messageType, setMessageType] = useState('success')
 
+  // PHẦN 3: khởi tạo Formik
   const formik = useFormik({
-    initialValues: {
-      customerName: '',
-      email: '',
-      gameName: '',
-      note: '',
-    },
-    validationSchema: Yup.object({
-      customerName: Yup.string().min(2, 'Tên ít nhất 2 ký tự').required('Vui lòng nhập họ tên'),
-      email: Yup.string().email('Email không hợp lệ').required('Vui lòng nhập email'),
-      gameName: Yup.string().required('Vui lòng nhập tên game bạn muốn'),
-      note: Yup.string().min(10, 'Ghi chú ít nhất 10 ký tự').required('Vui lòng nhập ghi chú'),
-    }),
+    initialValues,
+    validationSchema,
     onSubmit: (values) => {
       const request = {
         type: 'request',
-        ...values, // customerName, email, gameName, note
+        customerName: values.customerName,
+        email: values.email,
+        gameName: values.gameName,
+        note: values.note,
         status: 'pending',
         createdAt: new Date().toISOString(),
       }
 
+      // return Promise để Formik biết khi nào gửi xong
       return createOrder(request)
         .then(() => {
           setMessageType('success')
           setMessage('Đã gửi yêu cầu! Chúng tôi sẽ xem xét sớm nhất.')
-          // resetForm đưa các ô nhập về giá trị ban đầu (rỗng)
+          // resetForm đưa các ô về giá trị ban đầu (rỗng)
           formik.resetForm()
         })
         .catch(() => {
@@ -46,6 +63,7 @@ export default function RequestGamePage() {
     },
   })
 
+  // PHẦN 4: giao diện
   return (
     <Container className="py-4">
       <Row>
@@ -55,15 +73,75 @@ export default function RequestGamePage() {
 
           {message !== '' && <Alert variant={messageType}>{message}</Alert>}
 
-          <Form onSubmit={formik.handleSubmit}>
-            <FormField formik={formik} name="customerName" label="Họ và tên" />
-            <FormField formik={formik} name="email" label="Email" type="email" />
-            <FormField formik={formik} name="gameName" label="Tên game bạn muốn" />
-            <FormField formik={formik} name="note" label="Ghi chú" as="textarea" />
+          <form onSubmit={formik.handleSubmit} noValidate>
+            <div className="mb-3">
+              <label htmlFor="customerName" className="form-label">Họ và tên</label>
+              <input
+                type="text"
+                id="customerName"
+                name="customerName"
+                className={formik.touched.customerName && formik.errors.customerName ? 'form-control is-invalid' : 'form-control'}
+                value={formik.values.customerName}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.customerName && formik.errors.customerName && (
+                <div className="text-danger small">{formik.errors.customerName}</div>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className={formik.touched.email && formik.errors.email ? 'form-control is-invalid' : 'form-control'}
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.email && formik.errors.email && (
+                <div className="text-danger small">{formik.errors.email}</div>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="gameName" className="form-label">Tên game bạn muốn</label>
+              <input
+                type="text"
+                id="gameName"
+                name="gameName"
+                className={formik.touched.gameName && formik.errors.gameName ? 'form-control is-invalid' : 'form-control'}
+                value={formik.values.gameName}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.gameName && formik.errors.gameName && (
+                <div className="text-danger small">{formik.errors.gameName}</div>
+              )}
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="note" className="form-label">Ghi chú</label>
+              <textarea
+                id="note"
+                name="note"
+                rows={3}
+                className={formik.touched.note && formik.errors.note ? 'form-control is-invalid' : 'form-control'}
+                value={formik.values.note}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.note && formik.errors.note && (
+                <div className="text-danger small">{formik.errors.note}</div>
+              )}
+            </div>
+
             <Button type="submit" variant="success" disabled={formik.isSubmitting}>
               {formik.isSubmitting ? 'Đang gửi...' : 'Gửi yêu cầu'}
             </Button>
-          </Form>
+          </form>
         </Col>
       </Row>
     </Container>
