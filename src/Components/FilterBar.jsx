@@ -2,9 +2,6 @@ import { Col, Form, InputGroup, Row } from 'react-bootstrap'
 
 const GENRES = ['All', 'Action', 'Adventure', 'RPG', 'Strategy', 'Simulation', 'Casual']
 
-// Controlled input: giá trị hiển thị luôn lấy từ state của component CHA (value=...).
-// Khi người dùng gõ hoặc chọn, gọi hàm callback để component CHA cập nhật state.
-//
 // Props:
 //   filters = { genre, sortBy }  (state của useReducer)
 //   search  = chuỗi tìm kiếm     (state của useState)
@@ -26,7 +23,7 @@ export default function FilterBar({ filters, search, onSearchChange, onGenreChan
         <Col md={4}>
           <Form.Select value={filters.genre} onChange={(e) => onGenreChange(e.target.value)}>
             {GENRES.map((genre) => (
-              // value vẫn là 'All', chỉ đổi chữ hiển thị cho người dùng
+              
               <option key={genre} value={genre}>
                 {genre === 'All' ? 'Tất cả thể loại' : genre}
               </option>

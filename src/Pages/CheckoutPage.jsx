@@ -7,13 +7,13 @@ import { createOrder } from '../api/gameApi'
 import { useCart } from '../context/CartContext'
 import { formatPrice } from '../utils/price'
 
-// PHẦN 1: giá trị ban đầu — mỗi key = name của một ô
+// PHẦN 1: giá trị ban đầu 
 const initialValues = {
   customerName: '',
   email: '',
 }
 
-// PHẦN 2: luật Yup
+// PHẦN 2: Yup
 const validationSchema = Yup.object({
   customerName: Yup.string()
     .required('Vui lòng nhập họ tên')
@@ -23,8 +23,7 @@ const validationSchema = Yup.object({
     .email('Email không hợp lệ'),
 })
 
-// Trang thanh toán (giả lập, không trả tiền thật).
-// Luồng: điền form -> POST /orders lên MockAPI -> sang trang order-success -> xóa giỏ
+
 export default function CheckoutPage() {
   const { cart, totalPrice, dispatch } = useCart()
   const navigate = useNavigate()
@@ -55,12 +54,12 @@ export default function CheckoutPage() {
 
       setErrorMessage('')
 
-      // return Promise để Formik biết khi nào gửi xong (isSubmitting tự về false)
+     
       return createOrder(order)
         .then((savedOrder) => {
-          // Chuyển trang và gửi kèm đơn vừa lưu qua state của router
+          
           navigate('/order-success', { state: { order: savedOrder } })
-          // Đặt hàng xong thì xóa giỏ, để không bị mua trùng
+          
           dispatch({ type: 'CLEAR' })
         })
         // Lỗi thì KHÔNG xóa giỏ, để người dùng thử lại

@@ -1,7 +1,6 @@
 import { Card, Col, Placeholder, Row } from 'react-bootstrap'
 
-// Khung xương hiện trong lúc chờ API trả dữ liệu (đẹp hơn vòng quay loading).
-// 8 thẻ rỗng nhấp nháy, cùng kích thước với GameCard.
+
 const FAKE_ITEMS = [0, 1, 2, 3, 4, 5, 6, 7]
 
 export default function GameSkeleton() {

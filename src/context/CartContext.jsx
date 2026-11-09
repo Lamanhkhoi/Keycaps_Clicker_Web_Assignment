@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from 'react'
 import { cartReducer } from '../reducers/cartReducer'
 
-// Context giải quyết "prop drilling" (truyền props qua nhiều tầng component).
+
 // Navbar (hiện số lượng), CartPage, GameCard (nút Thêm) đều dùng chung giỏ hàng này.
 const CartContext = createContext(null)
 
@@ -15,7 +15,7 @@ const loadCart = () => {
 }
 
 export function CartProvider({ children }) {
-  // Tham số thứ 3 (loadCart) chỉ chạy 1 lần lúc đầu để lấy giá trị khởi tạo
+  
   const [cart, dispatch] = useReducer(cartReducer, [], loadCart)
 
   // Mỗi khi cart đổi thì lưu lại vào localStorage. [cart]: effect chỉ chạy khi cart đổi.

@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import { Alert, Button, Col, Container, Row } from 'react-bootstrap'
 import { createOrder } from '../api/gameApi'
 
-// PHẦN 1: giá trị ban đầu — mỗi key = name của một ô
+
 const initialValues = {
   customerName: '',
   email: '',
@@ -12,7 +12,6 @@ const initialValues = {
   note: '',
 }
 
-// PHẦN 2: luật Yup
 const validationSchema = Yup.object({
   customerName: Yup.string()
     .required('Vui lòng nhập họ tên')
@@ -27,13 +26,13 @@ const validationSchema = Yup.object({
     .min(10, 'Ghi chú tối thiểu 10 ký tự'),
 })
 
-// Form 'Yêu cầu thêm game'. Gửi lên MockAPI resource 'orders' với type = 'request'.
+
 export default function RequestGamePage() {
-  // message: báo kết quả sau khi gửi. messageType: 'success' hoặc 'danger' (màu Alert)
+  
   const [message, setMessage] = useState('')
   const [messageType, setMessageType] = useState('success')
 
-  // PHẦN 3: khởi tạo Formik
+  
   const formik = useFormik({
     initialValues,
     validationSchema,
@@ -48,12 +47,11 @@ export default function RequestGamePage() {
         createdAt: new Date().toISOString(),
       }
 
-      // return Promise để Formik biết khi nào gửi xong
+      
       return createOrder(request)
         .then(() => {
           setMessageType('success')
           setMessage('Đã gửi yêu cầu! Chúng tôi sẽ xem xét sớm nhất.')
-          // resetForm đưa các ô về giá trị ban đầu (rỗng)
           formik.resetForm()
         })
         .catch(() => {
@@ -63,7 +61,6 @@ export default function RequestGamePage() {
     },
   })
 
-  // PHẦN 4: giao diện
   return (
     <Container className="py-4">
       <Row>

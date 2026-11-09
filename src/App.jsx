@@ -9,6 +9,8 @@ import CartPage from './Pages/CartPage'
 import CheckoutPage from './Pages/CheckoutPage'
 import OrderSuccessPage from './Pages/OrderSuccessPage'
 import AdminPage from './Pages/AdminPage'
+import LoginPage from './Pages/LoginPage'
+import ProtectedRoute from './Components/ProtectedRoute'
 import NotFoundPage from './Pages/NotFoundPage'
 
 function App() {
@@ -24,8 +26,17 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/order-success" element={<OrderSuccessPage />} />
-          <Route path="/admin" element={<AdminPage />} />
-          {/* '*' khớp mọi địa chỉ không khớp route nào ở trên -> trang 404 */}
+          <Route path="/login" element={<LoginPage />} />
+          
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminPage />
+              </ProtectedRoute>
+            }
+          />
+          
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

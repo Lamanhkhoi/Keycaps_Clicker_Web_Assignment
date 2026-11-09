@@ -6,9 +6,9 @@ import PriceTag from '../Components/PriceTag'
 import StatusMessage from '../Components/StatusMessage'
 import { useCart } from '../context/CartContext'
 
-// Trang chi tiết game, đường dẫn dạng /products/:id
+
 export default function ProductDetailPage() {
-  // useParams lấy id từ URL. Chú ý: id luôn là CHUỖI, ví dụ '5'
+  
   const { id } = useParams()
   const navigate = useNavigate()
   const { dispatch } = useCart()
@@ -17,11 +17,10 @@ export default function ProductDetailPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  // Dependency [id]: mỗi khi id trên URL đổi thì gọi lại API
+
   useEffect(() => {
     getGameById(id)
       .then((data) => setGame(data))
-      // id không tồn tại -> MockAPI trả 404 -> axios reject -> vào .catch
       .catch(() => setError('Không tìm thấy game này.'))
       .finally(() => setLoading(false))
   }, [id])

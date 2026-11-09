@@ -10,7 +10,6 @@ export default function GameGrid({ games }) {
 
   return (
     <Row xs={1} md={2} lg={3} xl={4} className="g-4">
-      {/* key giúp React biết phần tử nào là phần tử nào khi danh sách thay đổi */}
       {games.map((game) => (
         <Col key={game.id}>
           <GameCard game={game} />

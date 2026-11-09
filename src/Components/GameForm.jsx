@@ -10,6 +10,7 @@ const emptyGame = {
   genre: 'Action',
   price: 0,
   discount: 0,
+  recommendations: 0,
   image: '',
   description: '',
   developer: '',
@@ -30,6 +31,11 @@ const validationSchema = Yup.object({
     .required('Vui lòng nhập % giảm giá')
     .min(0, 'Giảm giá từ 0 đến 100')
     .max(100, 'Giảm giá từ 0 đến 100'),
+  recommendations: Yup.number()
+    .typeError('Lượt đánh giá phải là số')
+    .required('Vui lòng nhập lượt đánh giá')
+    .integer('Lượt đánh giá phải là số nguyên')
+    .min(0, 'Lượt đánh giá không được âm'),
   image: Yup.string()
     .required('Vui lòng nhập link ảnh')
     .url('Link ảnh không hợp lệ (http://...)'),
@@ -42,18 +48,14 @@ const validationSchema = Yup.object({
     .required('Vui lòng nhập ngày phát hành (ví dụ 2022-02-24)'),
 })
 
-// Form thêm/sửa game cho trang Admin.
-// Props:
-//   initialValues = game cần sửa (không truyền thì dùng emptyGame -> form THÊM)
-//   onSubmit      = hàm của AdminPage, nhận values khi form hợp lệ
-//   submitLabel   = chữ trên nút
+
 export default function GameForm({ initialValues = emptyGame, onSubmit, submitLabel = 'Lưu' }) {
   // PHẦN 3: khởi tạo Formik
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit,
-    enableReinitialize: true, // initialValues đổi (sửa game khác) -> form nạp lại giá trị mới
+    enableReinitialize: true, 
   })
 
   // PHẦN 4: giao diện
@@ -125,6 +127,24 @@ export default function GameForm({ initialValues = emptyGame, onSubmit, submitLa
         />
         {formik.touched.discount && formik.errors.discount && (
           <div className="text-danger small">{formik.errors.discount}</div>
+        )}
+      </div>
+
+      <div className="mb-3">
+        <label htmlFor="recommendations" className="form-label">Lượt đánh giá</label>
+        <input
+          type="number"
+          id="recommendations"
+          name="recommendations"
+          min="0"
+          step="1"
+          className={formik.touched.recommendations && formik.errors.recommendations ? 'form-control is-invalid' : 'form-control'}
+          value={formik.values.recommendations}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.recommendations && formik.errors.recommendations && (
+          <div className="text-danger small">{formik.errors.recommendations}</div>
         )}
       </div>
 

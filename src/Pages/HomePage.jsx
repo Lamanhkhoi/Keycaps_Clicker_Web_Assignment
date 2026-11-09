@@ -7,13 +7,13 @@ import GameSkeleton from '../Components/GameSkeleton'
 import StatusMessage from '../Components/StatusMessage'
 import { SHOP_NAME } from '../config'
 
-// Trang chủ: banner, game nổi bật (featured = true) và game đang giảm giá.
+
 export default function HomePage() {
   const [games, setGames] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  // useEffect với [] chạy 1 LẦN sau lần render đầu tiên -> gọi API lấy game.
+ 
   useEffect(() => {
     getGames()
       .then((data) => setGames(data))
@@ -21,7 +21,7 @@ export default function HomePage() {
       .finally(() => setLoading(false))
   }, [])
 
-  // Hai danh sách này SUY RA từ games nên không cần state riêng
+  
   const featuredGames = games.filter((game) => game.featured === true)
   const saleGames = games.filter((game) => game.discount > 0)
 

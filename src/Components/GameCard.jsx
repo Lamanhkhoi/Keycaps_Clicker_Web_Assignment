@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import PriceTag from './PriceTag'
 
-// Thẻ hiển thị 1 game. Props: game = { id, name, genre, image, price, discount, ... }
+
 export default function GameCard({ game }) {
   const { dispatch } = useCart()
 
-  // Bấm 'Thêm vào giỏ' -> gửi action ADD kèm cả object game cho cartReducer
+  
   const handleAddToCart = () => {
     dispatch({ type: 'ADD', payload: game })
   }
@@ -24,7 +24,7 @@ export default function GameCard({ game }) {
           </Link>
         </Card.Title>
         <Card.Text className="game-genre">{game.genre}</Card.Text>
-        {/* mt-auto đẩy giá + nút xuống đáy thẻ, các thẻ cao bằng nhau */}
+       
         <div className="mt-auto">
           <div className="mb-2">
             <PriceTag game={game} />

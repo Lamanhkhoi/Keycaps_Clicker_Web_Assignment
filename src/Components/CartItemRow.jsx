@@ -2,7 +2,7 @@ import { Button } from 'react-bootstrap'
 import { useCart } from '../context/CartContext'
 import { formatPrice } from '../utils/price'
 
-// 1 dòng trong trang giỏ hàng. item = { id, name, image, price, qty }
+
 export default function CartItemRow({ item }) {
   const { dispatch } = useCart()
 

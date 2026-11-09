@@ -5,19 +5,18 @@ import GameForm from '../Components/GameForm'
 import StatusMessage from '../Components/StatusMessage'
 import { formatPrice } from '../utils/price'
 
-// Trang Admin: quản lý game (CRUD) và xem đơn hàng.
-// CRUD = Create (thêm), Read (xem), Update (sửa), Delete (xóa).
+
 export default function AdminPage() {
   const [games, setGames] = useState([])
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  // showForm: có đang hiện form không. editingGame: game đang sửa (null = đang THÊM mới)
+  
   const [showForm, setShowForm] = useState(false)
   const [editingGame, setEditingGame] = useState(null)
 
-  // READ: lấy danh sách game khi trang mở lần đầu
+  
   useEffect(() => {
     getGames()
       .then((data) => setGames(data))
@@ -25,7 +24,7 @@ export default function AdminPage() {
       .finally(() => setLoading(false))
   }, [])
 
-  // READ: lấy danh sách đơn hàng và yêu cầu
+  
   useEffect(() => {
     getOrders()
       .then((data) => setOrders(data))
@@ -47,26 +46,25 @@ export default function AdminPage() {
     setEditingGame(null)
   }
 
-  // Dùng chung cho THÊM và SỬA. values từ form: ô number có thể là CHUỖI -> đổi bằng Number()
+  
   const handleSave = (values) => {
     const gameData = {
       ...values,
       price: Number(values.price),
       discount: Number(values.discount),
+      recommendations: Number(values.recommendations),
     }
 
-    // SỬA: giữ field cũ (tags, recommendations...) rồi ghi đè dữ liệu mới -> PUT
-    // THÊM: thêm vài field mặc định cho game mới -> POST
+    
     const request =
       editingGame !== null
         ? updateGame(editingGame.id, { ...editingGame, ...gameData })
-        : createGame({ ...gameData, tags: [gameData.genre], recommendations: 0, steamAppId: 0 })
+        : createGame({ ...gameData, tags: [gameData.genre], steamAppId: 0 })
 
-    // return Promise để Formik biết khi nào lưu xong (nút 'Đang lưu...' tự mở lại)
+    
     return request
       .then((savedGame) => {
         if (editingGame !== null) {
-          // Thay đúng game vừa sửa trong mảng bằng bản mới từ server
           setGames(games.map((game) => (game.id === savedGame.id ? savedGame : game)))
         } else {
           setGames([...games, savedGame])
@@ -113,7 +111,7 @@ export default function AdminPage() {
         <Card className="mb-4">
           <Card.Body>
             <h3 className="h5">{editingGame === null ? 'Thêm game mới' : `Sửa game: ${editingGame.name}`}</h3>
-            {/* Sửa: truyền game làm initialValues. Thêm: không truyền -> GameForm dùng emptyGame */}
+            
             {editingGame !== null ? (
               <GameForm initialValues={editingGame} onSubmit={handleSave} submitLabel="Cập nhật" />
             ) : (
@@ -148,7 +146,7 @@ export default function AdminPage() {
               <td>{game.discount}%</td>
               <td>{game.featured ? 'Có' : 'Không'}</td>
               <td>
-                {/* Bọc arrow function để chỉ gọi khi BẤM, không gọi ngay lúc render */}
+                
                 <Button size="sm" variant="outline-primary" className="me-2" onClick={() => handleEditClick(game)}>
                   Sửa
                 </Button>

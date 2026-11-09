@@ -1,8 +1,6 @@
 import { formatPrice, getFinalPrice } from '../utils/price'
 
-// Hiển thị giá giống Steam:
-//   - Có giảm giá: '-75%', giá gốc gạch ngang, giá sau giảm
-//   - Không giảm: chỉ hiện giá
+
 export default function PriceTag({ game }) {
   const finalPrice = getFinalPrice(game)
 

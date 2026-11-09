@@ -1,13 +1,9 @@
-// Tất cả lời gọi MockAPI nằm ở đây. Các trang chỉ import hàm bên dưới, không tự gọi axios.
 import axios from 'axios'
 import { API_URL } from '../config'
 
 const GAMES_URL = `${API_URL}/games`
 const ORDERS_URL = `${API_URL}/orders`
 
-// axios trả về response (cái thùng), dữ liệu thật nằm trong response.data
-// -> bóc .data MỘT lần ở đây để các trang nhận dữ liệu sạch.
-// File này cố ý KHÔNG có .catch: để lỗi chảy ra cho trang tự báo lỗi.
 
 // ----- games -----
 export function getGames() {

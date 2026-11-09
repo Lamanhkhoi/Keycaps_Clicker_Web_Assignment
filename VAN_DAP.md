@@ -95,3 +95,14 @@ Counter-Strike 2: price 0 -> hiển thị "Free".
 - **Màu và kiểu dáng** nằm hết trong `src/styles/theme.css`. Các biến màu ở `:root` ở đầu file, muốn đổi phong cách chỉ cần sửa ở đó.
 - **Chế độ tối** của Bootstrap 5.3 bật bằng `data-bs-theme="dark"` ở thẻ `<html>` trong `index.html`.
 - **Responsive:** `Row xs={1} md={2} lg={3} xl={4}` trong `GameGrid.jsx` (1/2/3/4 cột theo độ rộng màn hình).
+
+## 11. Đăng nhập Admin (chỉ admin mới vào được /admin)
+**File:** `context/AuthContext.jsx`, `Components/ProtectedRoute.jsx`, `Pages/LoginPage.jsx`, `Components/AppNavbar.jsx`, `App.jsx`, `config.js`
+- **AuthContext** giống CartContext: `createContext` + `AuthProvider` + hook `useAuth()`. Lưu `user = { username, role }` bằng `useState`, khởi tạo từ localStorage nên F5 không bị đăng xuất.
+- `isAdmin = user !== null && user.role === 'admin'` là dữ liệu SUY RA, không tạo state riêng.
+- **Navbar:** link "Admin" chỉ hiện khi `isAdmin`. Chưa đăng nhập thì hiện nút "Đăng nhập Admin", đăng nhập rồi thì hiện nút "Đăng xuất".
+- **ProtectedRoute:** bọc `<AdminPage />` trong `App.jsx`. Không phải admin thì `<Navigate to="/login" replace />`. `replace` để nút Back không quay lại trang bị chặn.
+- **LoginPage:** Formik + Yup như Checkout (username, password đều `required`). Sai thì hiện 'Sai tên đăng nhập hoặc mật khẩu'. Đúng thì `navigate('/admin')`.
+- Hỏi: *Vì sao không lưu tài khoản trên MockAPI?* -> Gói free chỉ có 2 resource (`games`, `orders`) nên tài khoản admin để trong `config.js` (`ADMIN_USERNAME`, `ADMIN_PASSWORD`).
+- Hỏi: *Có an toàn không?* -> Không. Kiểm tra quyền ở phía client chỉ để ẩn/hiện giao diện. Ai mở DevTools cũng đọc được mật khẩu, và MockAPI không có xác thực. Muốn an toàn thật thì phải kiểm tra ở backend (token/JWT). Đây là bản demo.
+- Hỏi: *Vào thẳng /admin thì sao?* -> `ProtectedRoute` chuyển sang `/login`.

@@ -14,7 +14,7 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  // Ô tìm kiếm: chỉ 1 chuỗi -> useState
+  // Ô tìm kiếm
   const [search, setSearch] = useState('')
 
   // Bộ lọc có 2 giá trị (genre, sortBy) -> useReducer
@@ -27,17 +27,15 @@ export default function ProductsPage() {
       .finally(() => setLoading(false))
   }, [])
 
-  // Danh sách hiển thị được TÍNH từ games + search + filters mỗi lần render, không lưu state.
+  // Danh sách hiển thị được TÍNH từ games + search + filters mỗi lần render
 
-  // Bước 1: lọc theo thể loại và từ khóa.
-  // filter trả về mảng MỚI, nên sort ở bước 2 không làm hỏng mảng games gốc.
   const visibleGames = games.filter((game) => {
     const matchGenre = filters.genre === 'All' || game.genre === filters.genre
     const matchSearch = game.name.toLowerCase().includes(search.toLowerCase())
     return matchGenre && matchSearch
   })
 
-  // Bước 2: sắp xếp. Hàm so sánh (a, b): kết quả < 0 thì a đứng trước, > 0 thì b đứng trước
+  //sắp xếp: kết quả < 0 thì a đứng trước, > 0 thì b đứng trước
   visibleGames.sort((a, b) => {
     if (filters.sortBy === 'price-asc') {
       return getFinalPrice(a) - getFinalPrice(b)
@@ -64,7 +62,7 @@ export default function ProductsPage() {
         onSortChange={(value) => dispatch({ type: 'SET_SORT', payload: value })}
       />
 
-      {/* Đang tải thì hiện khung xương, tải xong (và không lỗi) mới hiện danh sách */}
+      
       {loading && <GameSkeleton />}
       <StatusMessage error={error} />
       {!loading && error === '' && <GameGrid games={visibleGames} />}

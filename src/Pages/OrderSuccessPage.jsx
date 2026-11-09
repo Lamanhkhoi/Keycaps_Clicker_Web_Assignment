@@ -2,16 +2,14 @@ import { Alert, Button, Container } from 'react-bootstrap'
 import { Link, Navigate, useLocation } from 'react-router-dom'
 import { formatPrice } from '../utils/price'
 
-// Trang báo đặt hàng thành công.
-// Đơn được CheckoutPage gửi sang qua navigate('/order-success', { state: { order } }).
+
 export default function OrderSuccessPage() {
   const location = useLocation()
 
-  // Gõ thẳng /order-success thì location.state là null -> order = null
+ 
   const order = location.state !== null ? location.state.order : null
 
-  // Không có đơn để hiện -> về trang chủ.
-  // replace: thay trang hiện tại trong lịch sử, nên bấm Back không quay lại trang trống này.
+  
   if (order === null) {
     return <Navigate to="/" replace />
   }
